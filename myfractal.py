@@ -1,3 +1,4 @@
+#Реализовал обыкновенные дроби
 import math
 class MyFractal:
     def __init__(self, numerator, denumerator):
@@ -33,10 +34,14 @@ class MyFractal:
                 return result
     def __truediv__(self, other):
         if isinstance(other, MyFractal):
-            result=MyFractal(self.numerator*other.numerator, self.denumerator*other.denumerator)
+            other_inverse = MyFractal(other.denumerator, other.numerator)
+
+            result = self * other_inverse
             result.simplity()
             return result
         elif isinstance(other, int):
-                result=MyFractal(self.numerator/other, self.numerator)
-                result.simplity()
-                return result
+            other_inverse = MyFractal(1, other)
+            
+            result = self * other_inverse
+            result.simplity()
+            return result
